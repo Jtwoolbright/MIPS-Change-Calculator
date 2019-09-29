@@ -1,0 +1,101 @@
+ #
+ # 	Name: 		Woolbright Josh
+ # 	Project: 	#1
+ # 	Due: 		9/30/2019
+ # 	Course: 	cs-2640-02-f19
+ #
+ # 	Description:
+ # 			This program takes an integer input
+ #			of change and determines how many 
+ #			quarters, dimes, etc. to be dispersed.
+ #
+		  .data
+ name:    .asciiz "J. Woolbright's Change\n"
+ change:  .asciiz "Enter the change? "
+ quarter: .asciiz "Quarter: "
+ dime:    .asciiz "Dime: "
+ nickel:  .asciiz "Nickel: "
+ penny:   .asciiz "Penny: " 
+ newline: .asciiz "\n"
+
+			.text
+ main:		la	$a0, name
+		li	$v0, 4
+		syscall
+
+		la	$a0, newline
+		li	$v0, 4
+		syscall	
+
+		la	$a0, change
+		li	$v0, 4
+		syscall
+
+		li	$v0, 5
+		syscall
+		li	$t0, 25
+
+		div	$v0, $t0
+		mfhi	$t2
+		mflo	$t1
+
+		la	$a0, newline
+		li	$v0, 4
+		syscall
+
+		la	$a0, quarter
+		li	$v0, 4
+		syscall
+
+		move	$a0, $t1
+		li	$v0, 1
+		syscall
+
+		la	$a0, newline
+		li	$v0, 4
+		syscall
+
+		la	$a0, dime
+		li	$v0, 4
+		syscall
+
+		li	$t0, 10
+		div	$t2, $t0
+		mfhi	$t1
+		mflo	$a0
+
+		li	$v0, 1
+		syscall
+
+		la	$a0, newline
+		li	$v0, 4
+		syscall
+
+		la	$a0, nickel
+		li	$v0, 4
+		syscall
+
+		li	$t0, 5
+		div	$t1, $t0
+		mfhi	$t2
+		mflo	$a0
+
+		li	$v0, 1
+		syscall
+
+		la	$a0, newline
+		li	$v0, 4
+		syscall
+
+		la	$a0, penny
+		li	$v0, 4
+		syscall
+
+		move	$a0, $t2
+		li	$v0, 1
+		syscall
+
+		li	$v0, 10
+		syscall
+
+		.end	main
